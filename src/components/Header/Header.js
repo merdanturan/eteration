@@ -67,7 +67,7 @@ const Header = ({ onClick, user = "Kerem" }) => {
   return (
     <>
       <Row align={"middle"} justify="space-around" className={classNames(styles.root)} gutter={[16, 16]}>
-        <Col xs={22} sm={22} md={8} lg={6} xl={4}>
+        <Col xs={22} sm={22} md={8} lg={3} xl={3}>
           <div className={classNames(styles.home)} onClick={onClick}>
             Eteration
           </div>
@@ -75,19 +75,19 @@ const Header = ({ onClick, user = "Kerem" }) => {
         <Col xs={2} sm={0}>
           <MenuOutlined style={{ fontSize: '24px', color: 'white' }} onClick={toggleMenu} />
         </Col>
-        <Col xs={24} sm={24} md={12} lg={10} xl={10}>
+        <Col xs={24} sm={24} md={12} lg={11} xl={11}>
           <Search placeholder="Search" onChange={(e) => handleSearch(e.target.value)} value={searchValue} />
         </Col>
         <Col xs={0} sm={0} md={2} lg={0}>
           <MenuOutlined style={{ fontSize: '24px', color: 'white' }} onClick={toggleMenu} />
         </Col>
-        <Col xs={0} sm={0} md={4} lg={4} xl={3} className={classNames(styles.totalPriceContainer)}>
+        <Col xs={0} sm={0} md={4} lg={3} xl={3} className={classNames(styles.totalPriceContainer)}>
           <ShoppingCartOutlined style={{ fontSize: '24px', color: "white" }} />
           <div className={classNames(styles.totalPrice)}>
             {totalPrice && `${totalPrice} $`}
           </div>
         </Col>
-        <Col xs={0} sm={0} md={4} lg={4} xl={3} className={classNames(styles.userContainer)}>
+        <Col xs={0} sm={0} md={4} lg={3} xl={3} className={classNames(styles.userContainer)}>
           <UserOutlined style={{ fontSize: '22px', color: "white" }} />
           <div className={classNames(styles.user)}>
             {user && user}
