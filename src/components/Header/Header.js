@@ -109,13 +109,13 @@ const Header = ({ onClick, user = "Kerem" }) => {
           >
             <Col span={10} className={classNames(styles.drawerTotalPriceContainer)}>
               <ShoppingCartOutlined style={{ fontSize: '24px', color: "black" }} />
-              <div className={classNames(styles.drawerTotalPrice)}>
+              <div className={classNames(styles.totalPrice, styles.drawer)}>
                 {totalPrice && `${totalPrice} $`}
               </div>
             </Col>
             <Col span={10} className={classNames(styles.drawerUserContainer)}>
               <UserOutlined style={{ fontSize: '22px', color: "black" }} />
-              <div className={classNames(styles.drawerUser)}>
+              <div className={classNames(styles.user, styles.drawer)}>
                 {user && user}
               </div>
             </Col>

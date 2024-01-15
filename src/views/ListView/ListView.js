@@ -23,12 +23,14 @@ const sortData = [
     { value: "priceAsc", label: "Price low to high" },
 ]
 
+// To filter filter options by text
 const filterSearchHandler = (data, field, filterVal) => {
     const array = [...new Set(data.map((item) => item[field]))]
     const filteredArray = array.filter((item) => item.toLowerCase().includes(filterVal?.toLowerCase()))
     return filteredArray
 }
 
+// To filter filter, sort data
 const dataToRenderHandler = (data, currentPage, sortValue, selectedBrandFilters, selectedModelFilters, searchValue) => {
     let newData = [...data]
     if (selectedBrandFilters.length > 0) {
@@ -74,11 +76,11 @@ const ListView = () => {
     const sortValue = useSelector((state) => state.sort);
 
     const [currentPage, setCurrentPage] = useState(1)
-    const [brandFilter, setBrandFilter] = useState('')
-    const [modelFilter, setModelFilter] = useState('')
+    const [brandFilterByText, setBrandFilterByText] = useState('')
+    const [modelFilterByText, setModelFilterByText] = useState('')
 
-    const brands = useMemo(() => filterSearchHandler(data, 'brand', brandFilter), [data, brandFilter])
-    const models = useMemo(() => filterSearchHandler(data, 'model', modelFilter), [data, modelFilter])
+    const brands = useMemo(() => filterSearchHandler(data, 'brand', brandFilterByText), [data, brandFilterByText])
+    const models = useMemo(() => filterSearchHandler(data, 'model', modelFilterByText), [data, modelFilterByText])
     const dataToRender = useMemo(() =>
         dataToRenderHandler(data, currentPage, sortValue, filters.selectedBrandFilters, filters.selectedModelFilters, searchValue),
         [data, currentPage, sortValue, filters.selectedBrandFilters, filters.selectedModelFilters, searchValue]
@@ -133,11 +135,11 @@ const ListView = () => {
                     </Col>
                     <Col span={20}>
                         Brand
-                        <Filter data={brands} onChange={handleBrandFilterChange} handleSearch={setBrandFilter} value={filters.selectedBrandFilters} />
+                        <Filter data={brands} onChange={handleBrandFilterChange} handleSearch={setBrandFilterByText} value={filters.selectedBrandFilters} />
                     </Col>
                     <Col span={20}>
                         Model
-                        <Filter data={models} onChange={handleModelFilterChange} handleSearch={setModelFilter} value={filters.selectedModelFilters} />
+                        <Filter data={models} onChange={handleModelFilterChange} handleSearch={setModelFilterByText} value={filters.selectedModelFilters} />
                     </Col>
                 </Row>
             </Col>

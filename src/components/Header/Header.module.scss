@@ -43,6 +43,10 @@
       padding-top: 12px;
     }
 
+    &.drawer {
+      color: black;
+    }
+
   }
 
   .user {
@@ -54,41 +58,18 @@
       padding-top: 12px;
     }
 
+    &.drawer {
+      color: black;
+    }
+
   }
 
-  .cardBox {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    top: 50px;
-  }
-
-  .drawerTotalPrice {
-    color: black;
+  .drawerTotalPriceContainer {
+    display: flex;
+    padding-top: 12px;
   }
 
   .drawerUserContainer {
-    color: black;
-  }
-
-  .drawerTotalPrice {
-    font-size: 18px;
-    color: black;
-    padding: 6px;
-
-    @media screen and (max-width: 425px) {
-      padding-top: 12px;
-    }
-
-  }
-
-  .drawerUser {
-    font-size: 18px;
-    color: black;
-    padding: 6px;
-
-    @media screen and (max-width: 425px) {
-      padding-top: 12px;
-    }
-
+    display: flex;
+    padding-top: 12px;
   }
