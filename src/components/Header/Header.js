@@ -1,15 +1,16 @@
-import React, { useState, useMemo } from 'react'
-import styles from './Header.module.scss'
-import classNames from 'classnames'
-import { Row, Col, Input, Drawer } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useMemo, useCallback } from 'react';
+import { Row, Col, Input, Drawer } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { ShoppingCartOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
-import { setSearchValue } from '../../stores/searchSlice'
+import classNames from 'classnames';
+import { setSearchValue } from '../../stores/searchSlice';
 import { setBrandFilters, setModelFilters } from '../../stores/filterSlice';
 import { setSortValue } from '../../stores/sortSlice';
-import Cart from '../Cart/Cart'
-import Sort from '../Sort/Sort'
-import Filter from '../Filter/Filter'
+import Cart from '../Cart/Cart';
+import Sort from '../Sort/Sort';
+import Filter from '../Filter/Filter';
+
+import styles from './Header.module.scss'
 
 const { Search } = Input;
 
@@ -27,7 +28,6 @@ const filterSearchHandler = (data, field, filterVal) => {
 }
 
 const Header = ({ onClick, user = "Kerem" }) => {
-  const [cartVisible, setCartVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [brandFilter, setBrandFilter] = useState('')
   const [modelFilter, setModelFilter] = useState('')
@@ -44,13 +44,13 @@ const Header = ({ onClick, user = "Kerem" }) => {
 
   const dispatch = useDispatch();
 
-  const handleSearch = (val) => {
+  const handleSearch = useCallback((val) => {
     dispatch(setSearchValue(val));
-  };
+  }, [dispatch]);
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
+  const toggleMenu = useCallback(() => {
+    setMenuVisible((prevMenuVisible) => !prevMenuVisible);
+  }, []);
 
   const handleBrandFilterChange = (filters) => {
     dispatch(setBrandFilters(filters));
@@ -81,15 +81,11 @@ const Header = ({ onClick, user = "Kerem" }) => {
         <Col xs={0} sm={0} md={2} lg={0}>
           <MenuOutlined style={{ fontSize: '24px', color: 'white' }} onClick={toggleMenu} />
         </Col>
-        <Col xs={0} sm={0} md={4} lg={4} xl={3} className={classNames(styles.totalPriceContainer)} onClick={() => setCartVisible(!cartVisible)}>
+        <Col xs={0} sm={0} md={4} lg={4} xl={3} className={classNames(styles.totalPriceContainer)}>
           <ShoppingCartOutlined style={{ fontSize: '24px', color: "white" }} />
           <div className={classNames(styles.totalPrice)}>
             {totalPrice && `${totalPrice} $`}
           </div>
-          {cartVisible &&
-            <div className={classNames(styles.cardBox)}>
-              <Cart />
-            </div>}
         </Col>
         <Col xs={0} sm={0} md={4} lg={4} xl={3} className={classNames(styles.userContainer)}>
           <UserOutlined style={{ fontSize: '22px', color: "white" }} />
