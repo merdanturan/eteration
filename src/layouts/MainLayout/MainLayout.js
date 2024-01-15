@@ -17,7 +17,6 @@ export const MainLayout = ({
     style,
     children,
 }) => {
-    const { totalPrice } = useSelector((state) => state.cart);
     const { items } = useSelector((state) => state.cart);
 
     const navigate = useNavigate();
