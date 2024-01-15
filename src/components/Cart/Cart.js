@@ -47,14 +47,6 @@ const Cart = ({items}) => {
                 Your cart is empty!
             </div>
         }
-                <Col xs={24} lg={0}>
-                    <Button
-                        type="primary"
-                        className={classNames(styles.actionButton)}
-                    >
-                        Checkout
-                    </Button>
-                </Col>
         </div>
     )
 }

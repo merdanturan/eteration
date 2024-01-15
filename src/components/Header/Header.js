@@ -37,6 +37,7 @@ const Header = ({ onClick, user = "Kerem" }) => {
   const filters = useSelector((state) => state.filter);
   const sortValue = useSelector((state) => state.sort);
   const { data } = useSelector((state) => state.data);
+  const { items } = useSelector((state) => state.cart);
 
   const brands = useMemo(() => filterSearchHandler(data, 'brand', brandFilter), [data, brandFilter])
   const models = useMemo(() => filterSearchHandler(data, 'model', modelFilter), [data, modelFilter])
@@ -133,6 +134,10 @@ const Header = ({ onClick, user = "Kerem" }) => {
             <Col span={20}>
               Model
               <Filter data={models} onChange={handleModelFilterChange} handleSearch={setModelFilter} value={filters.selectedModelFilters} />
+            </Col>
+            <Col span={20}>
+              Cart
+              <Cart items={items} />
             </Col>
           </Row>
         </div>
