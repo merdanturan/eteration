@@ -1,0 +1,13 @@
+.root {
+    padding: 16px;
+
+    @media screen and (max-width: 425px) {
+        display: block;
+        padding-top: 32px;
+    }
+}
+
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+}

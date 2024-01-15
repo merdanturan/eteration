@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, Outlet, Route } from "react-router-dom";
+import { Routes } from "./Routes";
 
-function App() {
+import { MainLayout } from "./layouts/MainLayout/MainLayout";
+import ListView from "./views/ListView/ListView";
+import DetailView from "./views/DetailView/DetailView";
+import { View } from "./constants/common";
+
+function renderAppRoutes() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Route
+      path={Routes.Root}
+      element={
+            <MainLayout>
+              <Outlet />
+            </MainLayout>
+      }
+    >
+      <Route index element={<Navigate to={View.List} />} />
+      <Route
+          path={View.List}
+          element={
+              <ListView />
+          }
+        />
+        <Route
+          path={View.Detail}
+          element={
+            <Outlet />
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route path={":id"} element={<DetailView />} />
+        </Route>
+        
+    </Route>
   );
 }
 
-export default App;
+export default renderAppRoutes;
